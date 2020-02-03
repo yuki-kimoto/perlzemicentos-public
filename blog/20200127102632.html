@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- meta -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
+<link rel="icon" type="image/x-icon" href="/images/giblog-logo.png">
+<link rel="stylesheet" type="text/css" href="/css/common.css">
+
+<title>Apacheの設定ファイルをテストする - CentOS 7 - CentOS入門 - CentOS入門ならPerlゼミのCentOS入門</title>
+<meta name="description" content="Apacheの設定ファイルをテストするにはapachectlコマンドの「-t」オプションを使用します。">
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <!-- header -->
+<div class="main">
+  <h1>
+    <a href="/">CentOS入門 - CentOS入門ならPerlゼミのCentOS入門</a>
+  </h1>
+</div>
+
+      </div>
+      <div class="main">
+        <div class="content">
+          <div class="entry">
+  <div class="top">
+    <!-- top -->
+
+  </div>
+  <div class="middle">
+    <h2><a href="/blog/20200127102632.html">Apacheの設定ファイルをテストする - CentOS 7</a></h2>
+<p>
+  Apacheの設定ファイルをテストするにはapachectlコマンドの「-t」オプションを使用します。
+</p>
+<pre>
+apachectl -t
+</pre>
+<p>
+  設定ファイルに間違いがない場合は以下のように出力されます。
+</p>
+<pre>
+Syntax OK
+</pre>
+<h3>設定ファイルの試験が通れば確実に再起動できますか?</h3>
+<p>
+  設定ファイルの試験が通れば確実に再起動できるとは限りません。
+</p>
+<p>
+  間違っていることは確認できますが、確実に再起動できることは保証できないと考えてください。
+</p>
+<p>
+  経験的には、SSLの設定周辺で、再起動できないことが多いです。
+</p>
+<p>
+  悲惨な事態にならないように、変更する前に必ず<a href="https://linux.perlzemi.com/blog/20191203081250.html">cpコマンド</a>で、設定ファイルのバックアップを取っておきましょう。
+</p>
+<pre>
+cp httpd.conf httpd.conf.20200203
+</pre>
+<p>
+  Apache設定ファイルへの変更は、すぐに戻せるように、ひとつづつ行うようにするのがコツです。たくさんの箇所を変更して、エラーが出た場合は、原因を特定するのが難しくなります。
+</p>
+
+  </div>
+  <div class="bottom">
+    <!-- bottom -->
+
+  </div>
+</div>
+
+        </div>
+        <div class="side">
+          <!-- side -->
+<div class="side-list">
+  <div class="side-list-title">
+    コンテンツ
+  </div>
+  <ul>
+    <li><a href="/list.html">記事の一覧</a></li>
+  </ul>
+</div>
+
+<div class="side-list" style="margin-top:30px">
+  <div class="side-list-title">
+    関連リンク
+  </div>
+  <ul>
+    <li><a href="https://tutorial.perlzemi.com/">テキスト処理と正規表現ならPerl入門ゼミ</a></li>
+    <li><a href="https://linux.perlzemi.com/">Linuxコマンドを覚えるならLinuxサーバー管理入門</a></li>
+    <li><a href="https://web.perlzemi.com/">Web開発ならMojoliciousスタートアップ</a></li>
+  </ul>
+</div>
+
+        </div>
+      </div>
+      <div class="footer">
+        <!-- footer -->
+<a href="https://github.com/yuki-kimoto/giblog">Giblog</a>
+
+      </div>
+    </div>
+  </body>
+</html>
