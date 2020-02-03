@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- meta -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
+<link rel="icon" type="image/x-icon" href="/images/giblog-logo.png">
+<link rel="stylesheet" type="text/css" href="/css/common.css">
+
+<title>apacheの設定ファイルを編集する - CentOS 7 - CentOS入門 - CentOS入門ならPerlゼミのCentOS入門</title>
+<meta name="description" content="apacheの設定ファイルを編集しましょう。apacheのグローバルな設定ファイルの場所は以下です。">
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <!-- header -->
+<div class="main">
+  <h1>
+    <a href="/">CentOS入門 - CentOS入門ならPerlゼミのCentOS入門</a>
+  </h1>
+</div>
+
+      </div>
+      <div class="main">
+        <div class="content">
+          <div class="entry">
+  <div class="top">
+    <!-- top -->
+
+  </div>
+  <div class="middle">
+    <h2><a href="/blog/20200202102632.html">apacheの設定ファイルを編集する - CentOS 7</a></h2>
+<p>
+  apacheの設定ファイルを編集しましょう。apacheのグローバルな設定ファイルの場所は以下です。
+</p>
+<pre>
+/etc/httpd/conf/httpd.conf
+</pre>
+<p>
+  viで編集しましょう。
+</p>
+<pre>
+sudo vi /etc/httpd/conf/httpd.conf
+</pre>
+<h3>apacheの設定を追加できるディレクトリ</h3>
+<p>
+  グローバルな設定ファイルを編集するのは、少し怖いものです。
+</p>
+<p>
+  apacheでは、追加の設定のための設定ディレクトリが準備されています。
+</p>
+<pre>
+/etc/httpd/conf/conf.d
+</pre>
+<p>
+  このディレクトリの中に、拡張子が「.conf」のファイルを配置すれば、自動的に読み込まれます。
+</p>
+<p>
+  たとえばバーチャルホスト用の設定ファイルを配置したとすると以下のようなファイル名にします。
+</p>
+<pre>
+vhost.conf
+</pre>
+
+  </div>
+  <div class="bottom">
+    <!-- bottom -->
+
+  </div>
+</div>
+
+        </div>
+        <div class="side">
+          <!-- side -->
+<div class="side-list">
+  <div class="side-list-title">
+    コンテンツ
+  </div>
+  <ul>
+    <li><a href="/list.html">記事の一覧</a></li>
+  </ul>
+</div>
+
+        </div>
+      </div>
+      <div class="footer">
+        <!-- footer -->
+<a href="https://github.com/yuki-kimoto/giblog">Giblog</a>
+
+      </div>
+    </div>
+  </body>
+</html>
