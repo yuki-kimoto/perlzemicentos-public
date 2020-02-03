@@ -7,8 +7,8 @@
 <link rel="icon" type="image/x-icon" href="/images/giblog-logo.png">
 <link rel="stylesheet" type="text/css" href="/css/common.css">
 
-<title>CentOS入門 - CentOS入門ならPerlゼミのCentOS入門</title>
-<meta name="description" content="CentOSの入門サイトです。CentOS 7以降の解説を追加予定です。">
+<title>Apacheのリバースプロキシの設定 - CentOS 7 - CentOS入門 - CentOS入門ならPerlゼミのCentOS入門</title>
+<meta name="description" content="Apacheでのリバースプロキシの設定です。">
   </head>
   <body>
     <div class="container">
@@ -29,22 +29,35 @@
 
   </div>
   <div class="middle">
-    <h2><a href="/">CentOS入門 - CentOS入門ならPerlゼミのCentOS入門</a></h2>
+    <h2><a href="/blog/20200130120019.html">Apacheのリバースプロキシの設定 - CentOS 7</a></h2>
 <p>
-  CentOSの入門サイトです。CentOS 7以降の解説を追加予定です。
+  Apacheでのリバースプロキシの設定です。
 </p>
-<h3>Apache - Webサーバー</h3>
-<ul>
-  <li><a href="/blog/20200115175810.html">Apacheのインストールと起動・停止・自動起動の設定 - CentOS 7</a></li>
-  <li><a href="/blog/20200114175810.html">Apacheの設定ファイルが正しいか確認する - CentOS 7</a></li>
-  <li><a href="/blog/20200130120019.html">Apacheのリバースプロキシの設定 - CentOS 7</a></li>
-  <li><a href="/blog/20200112182708.html">ApacheでHTTPS接続のためにmod_sslをインストールする - CentOS 7</a></li>
-  <li><a href="/blog/20200117182708.html">Let's encryptを使って、SSL証明書を取得する - CentOS 7</a></li>
-  <li><a href="/blog/20200203102632.html">apacheを再起動する - CentOS 7</a></li>
-  <li><a href="/blog/20200202102632.html">apacheの設定ファイルを編集する - CentOS 7</a></li>
-  <li><a href="/blog/20200203120019.html">apacheのアクセスログの場所 - CentOS 7</a></li>
-  <li><a href="/blog/20200131120019.html">apacheのエラーログの場所 - CentOS 7</a></li>
-</ul>
+<pre>
+&lt;VirtualHost *:80&gt;
+  ServerName www.mydomain.example
+  
+  &lt;Proxy *&gt;
+    Require all granted
+  &lt;/Proxy&gt;
+
+  ProxyRequests Off
+  ProxyPreserveHost On
+  ProxyPass / http://localhost:10000/ keepalive=On
+  ProxyPassReverse / http://localhost:10000/
+  RequestHeader set X-Forwarded-Proto "https"
+&lt;/VirtualHost&gt;
+</pre>
+<h3>リバースプロキシ設定の解説</h3>
+<h4>プロキシへのアクセスをすべて通す</h4>
+<p>
+  デフォルトでは、プロキシへのアクセスを通さないようになっているので、通す設定を行います。
+</p>
+<pre>
+  &lt;Proxy *&gt;
+    Require all granted
+  &lt;/Proxy&gt;
+</pre>
 
   </div>
   <div class="bottom">

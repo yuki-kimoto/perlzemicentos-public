@@ -7,8 +7,8 @@
 <link rel="icon" type="image/x-icon" href="/images/giblog-logo.png">
 <link rel="stylesheet" type="text/css" href="/css/common.css">
 
-<title>CentOS入門 - CentOS入門ならPerlゼミのCentOS入門</title>
-<meta name="description" content="CentOSの入門サイトです。CentOS 7以降の解説を追加予定です。">
+<title>Apacheの設定ファイルが正しいか確認する - CentOS7 - CentOS入門 - CentOS入門ならPerlゼミのCentOS入門</title>
+<meta name="description" content="CentOS7でApacheの設定ファイルが正しいか確認するにはapachectlコマンドの「configtest」を使用します。">
   </head>
   <body>
     <div class="container">
@@ -29,22 +29,14 @@
 
   </div>
   <div class="middle">
-    <h2><a href="/">CentOS入門 - CentOS入門ならPerlゼミのCentOS入門</a></h2>
+    <h2><a href="/blog/20200114175810.html">Apacheの設定ファイルが正しいか確認する - CentOS7</a></h2>
 <p>
-  CentOSの入門サイトです。CentOS 7以降の解説を追加予定です。
+  CentOS7でApacheの設定ファイルが正しいか確認するにはapachectlコマンドの「configtest」を使用します。
 </p>
-<h3>Apache - Webサーバー</h3>
-<ul>
-  <li><a href="/blog/20200115175810.html">Apacheのインストールと起動・停止・自動起動の設定 - CentOS 7</a></li>
-  <li><a href="/blog/20200114175810.html">Apacheの設定ファイルが正しいか確認する - CentOS 7</a></li>
-  <li><a href="/blog/20200130120019.html">Apacheのリバースプロキシの設定 - CentOS 7</a></li>
-  <li><a href="/blog/20200112182708.html">ApacheでHTTPS接続のためにmod_sslをインストールする - CentOS 7</a></li>
-  <li><a href="/blog/20200117182708.html">Let's encryptを使って、SSL証明書を取得する - CentOS 7</a></li>
-  <li><a href="/blog/20200203102632.html">apacheを再起動する - CentOS 7</a></li>
-  <li><a href="/blog/20200202102632.html">apacheの設定ファイルを編集する - CentOS 7</a></li>
-  <li><a href="/blog/20200203120019.html">apacheのアクセスログの場所 - CentOS 7</a></li>
-  <li><a href="/blog/20200131120019.html">apacheのエラーログの場所 - CentOS 7</a></li>
-</ul>
+<pre>
+# Apacheの設定ファイルが正しいか確認する
+apachectl configtest
+</pre>
 
   </div>
   <div class="bottom">
