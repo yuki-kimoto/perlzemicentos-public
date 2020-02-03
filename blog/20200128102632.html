@@ -7,8 +7,8 @@
 <link rel="icon" type="image/x-icon" href="/images/giblog-logo.png">
 <link rel="stylesheet" type="text/css" href="/css/common.css">
 
-<title>apacheのアクセスログの場所 - CentOS 7 - CentOS入門 - CentOS入門ならPerlゼミのCentOS入門</title>
-<meta name="description" content="apacheのアクセスログは以下の場所にあります。">
+<title>Apacheの起動・再起動・停止をログで確認する - CentOS 7 - CentOS入門 - CentOS入門ならPerlゼミのCentOS入門</title>
+<meta name="description" content="Apacheの起動・再起動・停止をログで確認するにはjournalctlコマンドで表示されるログを「-u httpd」で、Apacheのログだけに絞り込みます。">
   </head>
   <body>
     <div class="container">
@@ -29,32 +29,37 @@
 
   </div>
   <div class="middle">
-    <h2><a href="/blog/20200203120019.html">apacheのアクセスログの場所 - CentOS 7</a></h2>
+    <h2><a href="/blog/20200128102632.html">Apacheの起動・再起動・停止をログで確認する - CentOS 7</a></h2>
 <p>
-  apacheのアクセスログは以下の場所にあります。
+  Apacheの起動・再起動・停止をログで確認するにはjournalctlコマンドで表示されるログを「-u httpd」で、Apacheのログだけに絞り込みます。
 </p>
 <pre>
-/var/log/httpd/access_log
+journalctl -u httpd
 </pre>
 <p>
-  アクセスログは初期設定では、自動的にルーティングしており、4つの過去ログも同じディレクトリにあります。
+  出力結果のサンプルです。
 </p>
 <pre>
-access_log-20200112
-access_log-20200119
-access_log-20200126
-access_log-20200202
+eb 03 14:54:56 vs01 systemd[1]: Reloaded The Apache HTTP Server.
+Feb 03 14:56:44 vs01 systemd[1]: Stopping The Apache HTTP Server...
+Feb 03 14:57:02 vs01 systemd[1]: Starting The Apache HTTP Server...
+Feb 03 14:57:03 vs01 systemd[1]: Started The Apache HTTP Server.
+Feb 03 15:00:03 vs01 systemd[1]: Reloaded The Apache HTTP Server.
 </pre>
-<h3>アクセスログを確認する方法</h3>
+<h3>末尾から表示する</h3>
 <p>
-  アクセスログを確認する方法として、ファイルの内容を出力・確認できるLinuxコマンドを紹介しておきます。
+  Apacheの起動・再起動・停止をログを逆順で末尾から表示するには「-r」オプションを使用します。
 </p>
-<ul>
-  <li><a href="https://linux.perlzemi.com/blog/20200202124238.html">headコマンド - ファイルの先頭を出力</a></li>
-  <li><a href="https://linux.perlzemi.com/blog/20200203124238.html">tailコマンド - ファイルの末尾を出力</a></li>
-  <li><a href="https://linux.perlzemi.com/blog/20200113083613.html">cat - ファイルの内容を出力する</a></li>
-  <li><a href="https://linux.perlzemi.com/blog/20190401171737.html">vi - コマンドライン用のテキストエディタ</a></li>
-</ul>
+<pre>
+journalctl -r -u httpd
+</pre>
+<h3>末尾を自動で取得</h3>
+<p>
+  ログの末尾を自動で取得し<a href="https://linux.perlzemi.com/blog/20200203124238.html">tailコマンド</a>の「-f」オプションのような動作をさせるには「-f」オプションを使用します。
+</p>
+<pre>
+journalctl -f -u httpd
+</pre>
 
   </div>
   <div class="bottom">
