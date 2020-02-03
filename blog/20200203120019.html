@@ -7,8 +7,8 @@
 <link rel="icon" type="image/x-icon" href="/images/giblog-logo.png">
 <link rel="stylesheet" type="text/css" href="/css/common.css">
 
-<title>Entries - CentOS入門 - CentOS入門ならPerlゼミのCentOS入門</title>
-<meta name="description" content="Entries of CentOS入門 - CentOS入門ならPerlゼミのCentOS入門">
+<title>apacheのアクセスログの場所 - CentOS 7 - CentOS入門 - CentOS入門ならPerlゼミのCentOS入門</title>
+<meta name="description" content="apacheのアクセスログは以下の場所にあります。">
   </head>
   <body>
     <div class="container">
@@ -29,26 +29,29 @@
 
   </div>
   <div class="middle">
-    <h2><a href="/list.html">Entries</a></h2>
+    <h2><a href="/blog/20200203120019.html">apacheのアクセスログの場所 - CentOS 7</a></h2>
+<p>
+  apacheのアクセスログは以下の場所にあります。
+</p>
+<pre>
+/var/log/httpd/access_log
+</pre>
+<p>
+  アクセスログは初期設定では、自動的にルーティングしており、4つの過去ログも同じディレクトリにあります。
+</p>
+<pre>
+access_log-20200112
+access_log-20200119
+access_log-20200126
+access_log-20200202
+</pre>
+<h3>アクセスログを確認する方法</h3>
+<p>
+  アクセスログを確認する方法として、ファイルの内容を出力・確認できるLinuxコマンドを紹介しておきます。
+</p>
 <ul>
-  <li style="list-style:none;">
-    <b>2020</b>
-  </li>
-  <li style="list-style:none">
-    2/3 <a href="/blog/20200203120019.html">apacheのアクセスログの場所 - CentOS 7</a>
-  </li>
-  <li style="list-style:none">
-    2/3 <a href="/blog/20200203102632.html">apacheを再起動する - CentOS 7</a>
-  </li>
-  <li style="list-style:none">
-    2/2 <a href="/blog/20200202102632.html">apacheの設定ファイルを編集する - CentOS 7</a>
-  </li>
-  <li style="list-style:none">
-    2/1 <a href="/blog/20200201120019.html">apacheのアクセスログの場所 - CentOS 7></a>
-  </li>
-  <li style="list-style:none">
-    1/31 <a href="/blog/20200131120019.html">apacheのエラーログの場所 - CentOS 7</a>
-  </li>
+  <li><a href="https://linux.perlzemi.com/blog/20200113083613.html">cat - ファイルの内容を出力する</a></li>
+  <li><a href="https://linux.perlzemi.com/blog/20190401171737.html">vi - コマンドライン用のテキストエディタ</a></li>
 </ul>
 
   </div>
