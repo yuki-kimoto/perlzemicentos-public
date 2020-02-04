@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- meta -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
+<link rel="icon" type="image/x-icon" href="/images/giblog-logo.png">
+<link rel="stylesheet" type="text/css" href="/css/common.css">
+
+<title>ApacheでIP認証とベーシック認証を組み合わせる - CentOS 7 - CentOS入門 - CentOS入門ならPerlゼミのCentOS入門</title>
+<meta name="description" content="ApacheでIP認証とベーシック認証を組み合わせる方法の解説です。">
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <!-- header -->
+<div class="main">
+  <h1>
+    <a href="/">CentOS入門 - CentOS入門ならPerlゼミのCentOS入門</a>
+  </h1>
+</div>
+
+      </div>
+      <div class="main">
+        <div class="content">
+          <div class="entry">
+  <div class="top">
+    <!-- top -->
+
+  </div>
+  <div class="middle">
+    <h2><a href="/blog/20200126080644.html">ApacheでIP認証とベーシック認証を組み合わせる - CentOS 7</a></h2>
+<p>
+  ApacheでIP認証とベーシック認証を組み合わせる方法の解説です。
+</p>
+<p>
+  たとえば、社内からのアクセスであれば認証がなし、社外からのアクセスでは、パスワードを必要にしたいとします。
+</p>
+<p>
+  社内からのアクセスはグローバルIPアドレスで制御できます。
+</p>
+<p>
+  パスワードが必要な場合はベーシック認証が使えます。セキュリティのために接続はHTTPS接続で行うようにしましょう。
+</p>
+<p>
+  バーチャルホストを使っている場合は、それぞれのバーチャルホストのディレクティブの中に書きます。
+</p>
+<p>
+  リバースプロキシを使っている場合は、Proxyディレクティブの中に書きます。元のアクセス制限の設定は削除しても大丈夫です。
+</p>
+<pre>
+  &lt;RequireAny&gt;
+    # IP認証
+    Require ip 192.168.10.10
+    
+    # ベーシック認証
+    AuthType Basic
+    AuthName "Secret Zone"
+    AuthUserFile /var/www/.htpasswd
+    Require valid-user
+  &lt;/RequireAny&gt;
+</pre>
+<p>
+  RequireAnyは、いずれかが成功した場合は、認証が成功します。IP認証が成功するか、あるいはベーシック認証が成功した場合に、認証が成功します。
+</p>
+
+  </div>
+  <div class="bottom">
+    <!-- bottom -->
+
+  </div>
+</div>
+
+        </div>
+        <div class="side">
+          <!-- side -->
+<div class="side-list">
+  <div class="side-list-title">
+    コンテンツ
+  </div>
+  <ul>
+    <li><a href="/list.html">記事の一覧</a></li>
+  </ul>
+</div>
+
+<div class="side-list" style="margin-top:30px">
+  <div class="side-list-title">
+    関連リンク
+  </div>
+  <ul>
+    <li><a href="https://tutorial.perlzemi.com/">テキスト処理と正規表現ならPerl入門ゼミ</a></li>
+    <li><a href="https://linux.perlzemi.com/">Linuxコマンドを覚えるならLinuxサーバー管理入門</a></li>
+    <li><a href="https://web.perlzemi.com/">Web開発ならMojoliciousスタートアップ</a></li>
+  </ul>
+</div>
+
+        </div>
+      </div>
+      <div class="footer">
+        <!-- footer -->
+<a href="https://github.com/yuki-kimoto/giblog">Giblog</a>
+
+      </div>
+    </div>
+  </body>
+</html>

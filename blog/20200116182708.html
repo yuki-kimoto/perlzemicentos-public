@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- meta -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
+<link rel="icon" type="image/x-icon" href="/images/giblog-logo.png">
+<link rel="stylesheet" type="text/css" href="/css/common.css">
+
+<title>htpasswd - Apacheベーシック認証のパスワードファイルの作成 - CentOS 7 - CentOS入門 - CentOS入門ならPerlゼミのCentOS入門</title>
+<meta name="description" content="htpasswdコマンドを使うと、Apacheベーシック認証のパスワードファイルを作成することができます。">
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <!-- header -->
+<div class="main">
+  <h1>
+    <a href="/">CentOS入門 - CentOS入門ならPerlゼミのCentOS入門</a>
+  </h1>
+</div>
+
+      </div>
+      <div class="main">
+        <div class="content">
+          <div class="entry">
+  <div class="top">
+    <!-- top -->
+
+  </div>
+  <div class="middle">
+    <h2><a href="/blog/20200116182708.html">htpasswd - Apacheベーシック認証のパスワードファイルの作成 - CentOS 7</a></h2>
+<p>
+  htpasswdコマンドを使うと、Apacheベーシック認証のパスワードファイルを作成することができます。
+</p>
+<p>
+  パスワードファイル名は、作成するパスワードファイルの名前です。ユーザー名は、追加あるいはパスワードを変更するユーザー名です。
+</p>
+<pre>
+htpasswd -c パスワードファイル名 ユーザー名
+</pre>
+<p>
+  実際に、パスワードファイルを作成してみましょう。パスワードファイル名は、隠しファイルで「.htpasswd」です。ユーザー名は「kimotosystem」です。
+</p>
+<pre>
+htpasswd -c .htpasswd kimotosystem
+</pre>
+<p>
+  パスワードを聞かれますので、入力してEnterを押しましょう。
+</p>
+<p>
+  もう一度聞かれますので、入力してEnterを押しましょう。
+</p>
+<p>
+  このパスワードファイルは、Apacheのベーシック認証の設定で利用します。
+</p>
+
+  </div>
+  <div class="bottom">
+    <!-- bottom -->
+
+  </div>
+</div>
+
+        </div>
+        <div class="side">
+          <!-- side -->
+<div class="side-list">
+  <div class="side-list-title">
+    コンテンツ
+  </div>
+  <ul>
+    <li><a href="/list.html">記事の一覧</a></li>
+  </ul>
+</div>
+
+<div class="side-list" style="margin-top:30px">
+  <div class="side-list-title">
+    関連リンク
+  </div>
+  <ul>
+    <li><a href="https://tutorial.perlzemi.com/">テキスト処理と正規表現ならPerl入門ゼミ</a></li>
+    <li><a href="https://linux.perlzemi.com/">Linuxコマンドを覚えるならLinuxサーバー管理入門</a></li>
+    <li><a href="https://web.perlzemi.com/">Web開発ならMojoliciousスタートアップ</a></li>
+  </ul>
+</div>
+
+        </div>
+      </div>
+      <div class="footer">
+        <!-- footer -->
+<a href="https://github.com/yuki-kimoto/giblog">Giblog</a>
+
+      </div>
+    </div>
+  </body>
+</html>
