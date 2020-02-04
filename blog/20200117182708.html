@@ -39,10 +39,10 @@ sudo yum -y install certbot python-certbot-apache
 </pre>
 <h3>Let's encryptは証明書の取得にWebサーバーが必要</h3>
 <p>
-  Let's encryptは、HTTPS接続できるWebサーバーにアクセスできることを確認することによって、SSL証明書を発行します。
+  Let's encryptは、HTTP接続できるWebサーバーにアクセスできることを確認することによって、SSL証明書を発行します。
 </p>
 <p>
-  ですので、HTTPSで待ち受けるWebサーバーが必要です。
+  ですので、HTTPで待ち受けるWebサーバーが必要です。
 </p>
 <p>
   Webサーバーとして<a href="/blog/20200115175810.html">Aapcheのインストール</a>を行いましょう。
@@ -54,10 +54,10 @@ sudo yum -y install certbot python-certbot-apache
   よくあるサーバーの構成として、リバースプロキシで待ち受ける場合を考えてみましょう。
 </p>
 <p>
-  「/etc/httpd/conf.d/vhost.conf」の中に以下のような設定をします。HTTPSのデフォルトポート443で「www.mydomain.example」を受けて、後ろにあるアプリケーションサーバーの10000番ポートで受けます。
+  「/etc/httpd/conf.d/vhost.conf」の中に以下のような設定をします。HTTPのデフォルトポート80で「www.mydomain.example」を受けて、後ろにあるアプリケーションサーバーの10000番ポートで受けます。
 </p>
 <pre>
-  &lt;VirtualHost *:443&gt;
+  &lt;VirtualHost *:80&gt;
     ServerName www.mydomain.example
     
     &lt;Proxy *&gt;
@@ -75,11 +75,29 @@ sudo yum -y install certbot python-certbot-apache
   SSL証明書の読み込みの設定は、存在しないので、この時点では行いません。
 </p>
 <p>
-  設定後<a href="/blog/20200115175810.html">Apacheを再起動</a>して「https://www.mydomain.example」で、接続できることを確認してください。再起動の前には、<a href="/blog/20200114175810.html">Apacheの設定ファイルが正しいことをチェック</a>しておくと安心でしょう。
+  設定後<a href="/blog/20200115175810.html">Apacheを再起動</a>して「http://www.mydomain.example」で、接続できることを確認してください。再起動の前には、<a href="/blog/20200114175810.html">Apacheの設定ファイルが正しいことをチェック</a>しておくと安心でしょう。
+</p>
+<p>
+  リバースプロキシで、Webアプリケーションに接続しているの、Mojoliciousでサーバーを起動する簡単な例です。
+</p>
+<pre>
+# myapp.pl
+use Mojolicious::Lite;
+
+app-&gt;start;
+</pre>
+<p>
+  起動
+</p>
+<pre>
+hypnotoad myapp.pl
+</pre>
+<p>
+  <a href="https://web.perlzemi.com/">Mojolicious</a>のhypnotoadサーバーのデフォルトのポートは10000ですが、ポート番号を指定したい場合は「hypnotoad.conf」を編集します。
 </p>
 <h3>SSL証明書を取得する</h3>
 <p>
-  certbotを使って、SSL証明書を取得しましょう。Apache用の設定ファイルも自動で、追加してくれます。
+  certbotを使って、SSL証明書を取得しましょう。Apache用のHTTPS接続のための設定も自動で追加してくれます。
 </p>
 <pre>
 sudo certbot run --apache -d www.mydomain.example
@@ -120,7 +138,7 @@ encrypting the web, EFF news, campaigns, and ways to support digital freedom.
 (Y)es/(N)o:
 </pre>
 <p>
-  HTTPをHTTPSにリダイレクトするか聞かれるので、「1」か「2」の好きな方を選んでEnter。
+  HTTPをHTTPSにリダイレクトするか聞かれるので、「1」のリダイレクトを選びましょう。
 </p>
 <pre>
 Please choose whether or not to redirect HTTP traffic to HTTPS, removing HTTP access.
