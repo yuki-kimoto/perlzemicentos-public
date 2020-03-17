@@ -7,8 +7,8 @@
 <link rel="icon" type="image/x-icon" href="/images/giblog-logo.png">
 <link rel="stylesheet" type="text/css" href="/css/common.css">
 
-<title>Apacheの起動・再起動・停止をログで確認する - CentOS 7 - CentOS入門 - CentOSならPerlゼミ</title>
-<meta name="description" content="Apacheの起動・再起動・停止をログで確認するにはjournalctlコマンドで表示されるログを「-u httpd」で、Apacheのログだけに絞り込みます。">
+<title>フォントファイルのディレクトリ - CentOS7, CentOS8 - CentOS入門 - CentOSならPerlゼミ</title>
+<meta name="description" content="CentOSにおけるフォントファイルのディレクトリは、以下です。">
   </head>
   <body>
     <div class="container">
@@ -29,36 +29,48 @@
 
   </div>
   <div class="middle">
-    <h2><a href="/blog/20200128102632.html">Apacheの起動・再起動・停止をログで確認する - CentOS 7</a></h2>
+    <h2><a href="/blog/20200317114157.html">フォントファイルのディレクトリ - CentOS7, CentOS8</a></h3>
 <p>
-  Apacheの起動・再起動・停止をログで確認するにはjournalctlコマンドで表示されるログを「-u httpd」で、Apacheのログだけに絞り込みます。
+  CentOSにおけるフォントファイルのディレクトリは、以下です。
 </p>
 <pre>
-journalctl -u httpd
+/usr/share/fonts
+</pre>
+<p>
+  フォントを追加するときは、このディレクトリの中にフォントファイルを配置します。サブディレクトリを作成しても大丈夫です。
+</p>
+<h3>すべてのフォントを表示する</h3>
+<p>
+  findコマンドを使うと、すべてのフォントを表示することができます。
+</p>
+<pre>
+find /usr/share/fonts
+</pre>
+<h3>フォントを絞り込む</h3>
+<p>
+  grepコマンドを組み合わせると、フォントを絞り込むことができます。トゥルータイプフォントだけに絞り込んでみましょう。
+</p>
+<pre>
+find /usr/share/fonts | grep ttf
 </pre>
 <p>
   出力結果のサンプルです。
 </p>
 <pre>
-eb 03 14:54:56 vs01 systemd[1]: Reloaded The Apache HTTP Server.
-Feb 03 14:56:44 vs01 systemd[1]: Stopping The Apache HTTP Server...
-Feb 03 14:57:02 vs01 systemd[1]: Starting The Apache HTTP Server...
-Feb 03 14:57:03 vs01 systemd[1]: Started The Apache HTTP Server.
-Feb 03 15:00:03 vs01 systemd[1]: Reloaded The Apache HTTP Server.
-</pre>
-<h3>末尾から表示する</h3>
-<p>
-  Apacheの起動・再起動・停止をログを逆順で末尾から表示するには「-r」オプションを使用します。
-</p>
-<pre>
-journalctl -r -u httpd
-</pre>
-<h3>末尾を自動で取得</h3>
-<p>
-  ログの末尾を自動で取得し<a href="https://linux.perlzemi.com/blog/20200203124238.html">tailコマンド</a>の「-f」オプションのような動作をさせるには「-f」オプションを使用します。
-</p>
-<pre>
-journalctl -f -u httpd
+/usr/share/fonts/japanese/TrueType/sazanami-gothic.ttf
+/usr/share/fonts/japanese/TrueType/sazanami-mincho.ttf
+/usr/share/fonts/ja/TrueType/kochi-mincho-subst.ttf
+/usr/share/fonts/ja/TrueType/kochi-gothic-subst.ttf
+/usr/share/fonts/bitstream-vera/VeraSe.ttf
+/usr/share/fonts/bitstream-vera/VeraBd.ttf
+/usr/share/fonts/bitstream-vera/Vera.ttf
+/usr/share/fonts/bitstream-vera/VeraMoBd.ttf
+/usr/share/fonts/bitstream-vera/VeraIt.ttf
+/usr/share/fonts/bitstream-vera/VeraSeBd.ttf
+/usr/share/fonts/bitstream-vera/VeraMoIt.ttf
+/usr/share/fonts/bitstream-vera/VeraMoBI.ttf
+/usr/share/fonts/bitstream-vera/VeraMono.ttf
+/usr/share/fonts/bitstream-vera/VeraBI.ttf
 </pre>
 
   </div>
