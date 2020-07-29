@@ -7,8 +7,8 @@
 <link rel="icon" type="image/x-icon" href="/images/giblog-logo.png">
 <link rel="stylesheet" type="text/css" href="/css/common.css">
 
-<title>htpasswd - Apacheベーシック認証のパスワードファイルの作成 - CentOS 7 - CentOSサーバー構築入門 - CentOSでPerl Webシステム開発</title>
-<meta name="description" content="htpasswdコマンドを使うと、Apacheベーシック認証のパスワードファイルを作成することができます。">
+<title>redis-cli - RedisクライアントからRedisコマンドを実行する - CentOSサーバー構築入門 - CentOSでPerl Webシステム開発</title>
+<meta name="description" content="redis-cliは、Redisコマンドを実行するためのRedisクライアントです。Redisサーバーをインストールすると自動的にインストールされます。">
   </head>
   <body>
     <div class="container">
@@ -29,30 +29,40 @@
 
   </div>
   <div class="middle">
-    <h2><a href="/blog/20200116182708.html">htpasswd - Apacheベーシック認証のパスワードファイルの作成 - CentOS 7</a></h2>
+    <h2><a href="/blog/20200720125704.html">redis-cli - RedisクライアントからRedisコマンドを実行する</a></h2>
 <p>
-  htpasswdコマンドを使うと、Apacheベーシック認証のパスワードファイルを作成することができます。
-</p>
-<p>
-  パスワードファイル名は、作成するパスワードファイルの名前です。ユーザー名は、追加あるいはパスワードを変更するユーザー名です。
+  redis-cliは、Redisコマンドを実行するためのRedisクライアントです。<a href="/blog/20200525135533.html">Redisサーバーをインストール</a>すると自動的にインストールされます。
 </p>
 <pre>
-htpasswd -c パスワードファイル名 ユーザー名
+redis-cli
 </pre>
 <p>
-  実際に、パスワードファイルを作成してみましょう。パスワードファイル名は、隠しファイルで「.htpasswd」です。ユーザー名は「kimotosystem」です。
+  Redisクライアントが起動します。
+</p>
+<h3>Redisコマンド</h3>
+<p>
+  Redisコマンドを実行しましょう。
+</p>
+<h4>PUBを実行するPUBLISH</h4>
+<p>
+  PUBLISHコマンドを実行するとPUBを実行できます。PUBは、push通知に使用します。
 </p>
 <pre>
-htpasswd -c .htpasswd kimotosystem
+PUBLISH チャンネル名 メッセージ
 </pre>
 <p>
-  パスワードを聞かれますので、入力してEnterを押しましょう。
+  チャンネル名もメッセージも単なる文字列です。複雑なデータ構造が必要な場合は、メッセージにJSONを使いましょう。
 </p>
 <p>
-  もう一度聞かれますので、入力してEnterを押しましょう。
+  チャンネル名はすべてのプロセスでグローバルな名前空間ですので、重ならない名前を考えましょう。
 </p>
+<pre>
+PUBLISH  /foo/bar/baz?id=5 Hello
+PUBLISH  "/foo/bar/baz?id=5" "Hello"
+PUBLISH  "/foo/bar/baz?id=5" '{message : "Hello"}'
+</pre>
 <p>
-  このパスワードファイルは、Apacheのベーシック認証の設定で利用します。
+  文字列の囲みは、ダブルクォートとシングルクォートの両方が使えます。
 </p>
 
   </div>

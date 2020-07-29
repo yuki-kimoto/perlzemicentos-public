@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- meta -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
+<link rel="icon" type="image/x-icon" href="/images/giblog-logo.png">
+<link rel="stylesheet" type="text/css" href="/css/common.css">
+
+<title>Redisサーバーの起動・停止・再起動・状態確認 - CentOSサーバー構築入門 - CentOSでPerl Webシステム開発</title>
+<meta name="description" content="Redisサーバーの起動・停止・再起動・状態確認について解説します。">
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <!-- header -->
+<div class="main">
+  <h1>
+    <a href="/">CentOSサーバー構築入門 - CentOSでPerl Webシステム開発</a>
+  </h1>
+</div>
+
+      </div>
+      <div class="main">
+        <div class="content">
+          <div class="entry">
+  <div class="top">
+    <!-- top -->
+
+  </div>
+  <div class="middle">
+    <h2><a href="/blog/20200225174004.html">Redisサーバーの起動・停止・再起動・状態確認</a></h2>
+<p>
+  Redisサーバーの起動・停止・再起動・状態確認について解説します。
+</p>
+<h4>Redisの状態確認</h4>
+<p>
+  Redisの状態確認は、systemctlコマンドの「status」を使って行います。
+</p>
+<pre>
+sudo systemctl status redis
+</pre>
+<h5>起動している場合</h5>
+<p>
+  起動している場合は、以下のように表示されます。
+</p>
+<pre>
+● redis.service - Redis persistent key-value database
+   Loaded: loaded (/usr/lib/systemd/system/redis.service; disabled; vendor preset: disabled)
+  Drop-In: /etc/systemd/system/redis.service.d
+           mqlimit.conf
+   Active: active (running) since Wed 2020-07-29 09:19:06 JST; 16min ago
+ Main PID: 27074 (redis-server)
+   CGroup: /system.slice/redis.service
+           mq27074 /usr/bin/redis-server 127.0.0.1:6379
+</pre>
+<h5>停止している場合</h5>
+<p>
+  停止している場合は、以下のように表示されます。
+</p>
+<pre>
+● redis.service - Redis persistent key-value database
+   Loaded: loaded (/usr/lib/systemd/system/redis.service; disabled; vendor preset: disabled)
+  Drop-In: /etc/systemd/system/redis.service.d
+           mqlimit.conf
+   Active: inactive (dead)
+</pre>
+<h4>Redisの起動</h4>
+<p>
+  Redisの起動は、systemctlコマンドの「start」を使って行います。sudoコマンドを使って、root権限で実行します。
+</p>
+<pre>
+sudo systemctl start redis
+</pre>
+<p>
+  起動が成功しても、成功したというメッセージは返ってきません。状態確認を行ってください。
+</p>
+<h4>Redisの停止</h4>
+<p>
+  Redisの停止は、systemctlコマンドの「stop」を使って行います。sudoコマンドを使って、root権限で実行します。
+</p>
+<pre>
+sudo systemctl stop redis
+</pre>
+<p>
+  停止が成功しても、成功したというメッセージは何も返ってきません。状態確認を行ってください。
+</p>
+<h4>Redisの再起動</h4>
+<p>
+  Redisの再起動は、systemctlコマンドの「restart」を使って行います。sudoコマンドを使って、root権限で実行します。
+</p>
+<pre>
+sudo systemctl restart redis
+</pre>
+<p>
+  restartは単に、stopコマンドを実行して、startコマンドを実行します。
+</p>
+<h3>Redisの起動・停止のログを見るには</h3>
+<p>
+  Redisなどのサーバーは、systemdというプログラムによって集中的に管理されています。
+</p>
+<p>
+  systemdのログにRedisの起動・停止ログが出力されています。
+</p>
+<p>
+  systemdのログを見るには<a href="/blog/20200602135100.html">journalctlコマンド</a>を使います。「-u」オプションでユニット「redis」を指定します。sudoで実行しないとRedisサーバーのログが見れないので注意してください。ログの最後の部分だけ見たい場合は「-r」オプションを組み合わせます。
+</p>
+<pre>
+sudo journalctl -r -u redis
+</pre>
+<p>
+  ログのサンプルです。
+</p>
+<pre>
+Jul 29 09:44:13 tk2-261-40258.vs.sakura.ne.jp systemd[1]: Started Redis persistent key-value database.
+Jul 29 09:44:13 tk2-261-40258.vs.sakura.ne.jp systemd[1]: Starting Redis persistent key-value database...
+Jul 29 09:43:27 tk2-261-40258.vs.sakura.ne.jp systemd[1]: Stopped Redis persistent key-value database.
+Jul 29 09:43:27 tk2-261-40258.vs.sakura.ne.jp systemd[1]: Stopping Redis persistent key-value database...
+Jul 29 09:19:06 tk2-261-40258.vs.sakura.ne.jp systemd[1]: Started Redis persistent key-value database.
+Jul 29 09:19:06 tk2-261-40258.vs.sakura.ne.jp systemd[1]: Starting Redis persistent key-value database...
+</pre>
+<h3>Redisのsystemdの設定ファイルを見るには</h3>
+<p>
+  Redisのsystemdの設定ファイルは「systemctl status redis」で見れます。
+</p>
+<p>
+  設定ファイルを<a href="https://linux.perlzemi.com/blog/20200113083613.html">catコマンド</a>で見てみましょう。
+</p>
+<pre>
+cat /lib/systemd/system/redis.service
+</pre>
+
+  </div>
+  <div class="bottom">
+    <!-- bottom -->
+
+  </div>
+</div>
+
+        </div>
+        <div class="side">
+          <!-- side -->
+<div class="side-list">
+  <div class="side-list-title">
+    目次
+  </div>
+  <ul>
+    <li><a href="/">CentOSサーバー構築入門</a></li>
+    <li><a href="/blog/20200529085516.html">パッケージ管理</a></li>
+    <li><a href="/list.html">新着情報</a></li>
+  </ul>
+</div>
+
+<div class="side-list" style="margin-top:30px">
+  <div class="side-list-title">
+    関連リンク
+  </div>
+  <div class="side-list-title" style="margin-top:30px">
+    Webシステム開発
+  </div>
+  <ul>
+    <li><a href="https://tutorial.perlzemi.com/">Perlプログラミングを学ぶ</a></li>
+    <li><a href="https://linux.perlzemi.com/">Linuxの仕組み・コマンドを学ぶ</a></li>
+    <li><a href="https://web.perlzemi.com/">Webシステム開発を学ぶ</a></li>
+  </ul>
+
+  <div class="side-list-title" style="margin-top:30px">
+    Webシステム開発の見積もり
+  </div>
+  <ul>
+    <li><a href="https://kimoto-system.co.jp/">Perl Webシステム開発の<br>木本システム株式会社</a></li>
+  </ul>
+</div>
+
+        </div>
+      </div>
+      <div class="footer">
+        <!-- footer -->
+<a href="https://kimoto-system.co.jp/message">サイト運営 木本システム <br>Copyright © 2020-2020 Yuki Kimoto</a>
+
+      </div>
+    </div>
+  </body>
+</html>
