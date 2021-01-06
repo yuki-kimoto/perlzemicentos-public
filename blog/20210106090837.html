@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- meta -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
+<link rel="icon" type="image/x-icon" href="/images/giblog-logo.png">
+<link rel="stylesheet" type="text/css" href="/css/common.css">
+
+<title>Firfoxをインストールする - CentOS 7 - CentOSサーバー構築入門 - CentOSでPerl Webシステム開発</title>
+<meta name="description" content="Firefoxをyumコマンドをインストールします。CentOS 7で試しました。">
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <!-- header -->
+<div class="main">
+  <h1>
+    <a href="/">CentOSサーバー構築入門 - CentOSでPerl Webシステム開発</a>
+  </h1>
+</div>
+
+      </div>
+      <div class="main">
+        <div class="content">
+          <div class="entry">
+  <div class="top">
+    <!-- top -->
+
+  </div>
+  <div class="middle">
+    <h2><a href="/blog/20210106090837.html">Firfoxをインストールする - CentOS 7</a></h2>
+<p>
+  Firefoxをyumコマンドをインストールします。CentOS 7で試しました。
+</p>
+<pre>
+yum -y install firefox
+</pre>
+<h3>Firefoxをヘッドレス実行する</h3>
+<p>
+  ヘッドレス実行とはGUI画面なしでWebサイトのアクセスすることです。Firefoxをヘッドレス実行してスクリーンショットを取得します。
+</p>
+<pre>
+firefox -headless -screenshot https://developer.mozilla.com
+</pre>
+<p>
+  以下はスクリーンショットです。
+</p>
+<p>
+  <img src="/images/firefox/screenshot.png" style="width:100%">
+</p>
+<h3>JavaScript対応のWebスクレイピングをPerlで行うには?</h3>
+<p>
+  JavaScript対応のWebスクレイピングをPerlで行うにはFirefoxに加えて、GeckoDriverと<a href="https://tutorial.perlzemi.com/blog/20091116124667.html">Perlモジュール</a>の<a href="https://tutorial.perlzemi.com/blog/20210105145700.html">Selenium::Remote::Driver</a>が必要です。
+</p>
+
+  </div>
+  <div class="bottom">
+    <!-- bottom -->
+
+<h3>CentOS+PerlでWebシステム開発 環境構築のご紹介</h3>
+
+<div class="youtube_block">
+  <div class="youtube">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/BV-QTIdBSVs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+</div>
+
+  </div>
+</div>
+
+        </div>
+        <div class="side">
+          <!-- side -->
+<div class="side-list">
+  <div class="side-list-title">
+    目次
+  </div>
+  <ul>
+    <li><a href="/">CentOSサーバー構築入門</a></li>
+    <li><a href="/blog/20200529085516.html">パッケージ管理</a></li>
+    <li><a href="/list.html">新着情報</a></li>
+  </ul>
+</div>
+
+<div class="side-list" style="margin-top:30px">
+  <div class="side-list-title">
+    関連リンク
+  </div>
+  <div class="side-list-title" style="margin-top:30px">
+    Webシステム開発
+  </div>
+  <ul>
+    <li><a href="https://tutorial.perlzemi.com/">Perlプログラミングを学ぶ</a></li>
+    <li><a href="https://linux.perlzemi.com/">Linuxの仕組み・コマンドを学ぶ</a></li>
+    <li><a href="https://web.perlzemi.com/">Webシステム開発を学ぶ</a></li>
+  </ul>
+
+  <div class="side-list-title" style="margin-top:30px">
+    Webシステム開発の見積もり
+  </div>
+  <ul>
+    <li><a href="https://kimoto-system.co.jp/">Perl Webシステム開発の<br>木本システム株式会社</a></li>
+  </ul>
+</div>
+
+        </div>
+      </div>
+      <div class="footer">
+        <div class="what_is_this_site">
+  <div class="inside">
+    現在このサイトは、ほぼ書きかけの状態です。<a href="https://linux.perlzemi.com/">Linux</a>ディストリビューションの一つであるCentOSをを使って<a href="https://tutorial.perlzemi.com/">Perl</a>のWebシステム開発環境を構築するための手順を記述しています。<br><a href="https://mojolicious.perlzemi.com/">Mojolicious</a>を使った<a href="https://websystem.perlzemi.com/">Webアプリケーション</a>を実行して、ドメイン取得を行って、Webサービスをサービスを実際に公開するまでを解説。Webシステム開発環境は、<a href="https://datascience.perlzemi.com/">データ分析</a>を行うためのデータ分析基盤、<a href="https://c.perlzemi.com/">C言語</a>の開発環境としても利用できます。
+  </div>
+</div>
+
+<div class="perlri_link">
+  <a href="http://www.perlri.com">
+    Copyright © Perl総合研究所
+  </a>
+</div>
+
+      </div>
+    </div>
+  </body>
+</html>
