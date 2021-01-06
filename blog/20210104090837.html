@@ -7,8 +7,8 @@
 <link rel="icon" type="image/x-icon" href="/images/giblog-logo.png">
 <link rel="stylesheet" type="text/css" href="/css/common.css">
 
-<title>Firefoxをインストールする - CentOS 7 - CentOS+Perl Webシステム開発環境構築入門</title>
-<meta name="description" content="Firefoxをyumコマンドでインストールします。CentOS 7で試しました。">
+<title>Google Chromeをインストールする - CentOS 7 - CentOS+Perl Webシステム開発環境構築入門</title>
+<meta name="description" content="Google Chromeをインストールします。CentOS 7で試しました。">
   </head>
   <body>
     <div class="container">
@@ -29,29 +29,55 @@
 
   </div>
   <div class="middle">
-    <h2><a href="/blog/20210106090837.html">Firefoxをインストールする - CentOS 7</a></h2>
+    <h2><a href="/blog/20210104090837.html">Google Chromeをインストールする - CentOS 7</a></h2>
 <p>
-  Firefoxをyumコマンドでインストールします。CentOS 7で試しました。
+  Google Chromeをインストールします。CentOS 7で試しました。
+</p>
+<p>
+  Google Chrome用のリポジトリを追加します。
 </p>
 <pre>
-yum -y install firefox
+vi /etc/yum.repos.d/google-chrome.repo
 </pre>
-<h3>Firefoxをヘッドレス実行する</h3>
+<pre>
+[google-chrome]
+name=google-chrome
+baseurl=http://dl.google.com/linux/chrome/rpm/stable/x86_64
+enabled=1
+gpgcheck=1
+gpgkey=https://dl-ssl.google.com/linux/linux_signing_key.pub
+</pre>
 <p>
-  ヘッドレス実行とはGUI画面なしでWebサイトのアクセスすることです。Firefoxをヘッドレス実行してスクリーンショットを取得します。
+  Google Chromeをyumコマンドでインストール。
 </p>
 <pre>
-firefox -headless -screenshot https://developer.mozilla.com
+yum -y install google-chrome-stable
 </pre>
 <p>
-  以下はスクリーンショットです。
+  バージョン確認してみましょう。
 </p>
+<pre>
+google-chrome --version
+</pre>
 <p>
-  <img src="/images/firefox/screenshot.png" style="width:100%">
+  バージョンの出力結果です。
+</p>
+<pre>
+Google Chrome 87.0.4280.88
+</pre>
+<h3>Google Chromeをヘッドレス実行する</h3>
+<p>
+  ヘッドレス実行とはGUI画面なしでWebサイトのアクセスすることです。Google Chromeをヘッドレス実行してスクリーンショットを取得します。
+</p>
+<pre>
+google-chrome --disable-setuid-sandbox --no-sandbox --headless --disable-gpu --dump-dom https://www.chromestatus.com/
+</pre>
+<p>
+  画面にHTMLのツリーが表示されればOKです。
 </p>
 <h3>JavaScript対応のWebスクレイピングをPerlで行うには?</h3>
 <p>
-  JavaScript対応のWebスクレイピングをPerlで行うにはFirefoxに加えて、<a href="/blog/20210105090837.html">GeckoDriverのインストール</a>と<a href="https://tutorial.perlzemi.com/blog/20091116124667.html">Perlモジュール</a>の<a href="https://tutorial.perlzemi.com/blog/20210105145700.html">Selenium::Remote::Driver</a>が必要です。
+  JavaScript対応のWebスクレイピングをPerlで行うにはGoogle Chromeに加えて、<a href="/blog/20210103090837.html">ChromeDriverのインストール</a>と<a href="https://tutorial.perlzemi.com/blog/20091116124667.html">Perlモジュール</a>の<a href="https://tutorial.perlzemi.com/blog/20210105145700.html">Selenium::Remote::Driver</a>が必要です。
 </p>
 
   </div>
