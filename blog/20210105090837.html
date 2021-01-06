@@ -7,8 +7,8 @@
 <link rel="icon" type="image/x-icon" href="/images/giblog-logo.png">
 <link rel="stylesheet" type="text/css" href="/css/common.css">
 
-<title>apacheのエラーログの場所 - CentOS 7 - CentOS+Perl Webシステム開発環境構築入門</title>
-<meta name="description" content="apacheのエラーログは以下の場所にあります。">
+<title>GeckoDriverをインストールする - Cent OS 7 - CentOS+Perl Webシステム開発環境構築入門</title>
+<meta name="description" content="Firefoxをプログラムから制御するためのGeckoDriverをインストールしましょう。GeckoDriverのバイナリを直接配置します。64bit版のLinuxであることを想定します。Cent OS 7で確認しています。">
   </head>
   <body>
     <div class="container">
@@ -29,32 +29,47 @@
 
   </div>
   <div class="middle">
-    <h2><a href="/blog/20200131120019.html">apacheのエラーログの場所 - CentOS 7</a></h2>
+    <h2><a href="/blog/20210105090837.html">GeckoDriverをインストールする - Cent OS 7</a></h2>
 <p>
-  apacheのエラーログは以下の場所にあります。
+  Firefoxをプログラムから制御するためのGeckoDriverをインストールしましょう。GeckoDriverのバイナリを直接配置します。64bit版のLinuxであることを想定します。Cent OS 7で確認しています。
 </p>
 <pre>
-/var/log/httpd/error_log
+firefox -v
 </pre>
 <p>
-  エラーログは初期設定では、自動的にルーティングしており、4つの過去ログも同じディレクトリにあります。
+  バージョン。
 </p>
 <pre>
-error_log-20200112
-error_log-20200119
-error_log-20200126
-error_log-20200202
+Mozilla Firefox 78.6.0esr
 </pre>
-<h3>エラーログを確認する方法</h3>
 <p>
-  エラーログを確認する方法として、ファイルの内容を出力・確認できるLinuxコマンドを紹介しておきます。
+  GeckoDriverをインストールしましょう。
 </p>
-<ul>
-  <li><a href="https://linux.perlzemi.com/blog/20200202124238.html">headコマンド - ファイルの先頭を出力</a></li>
-  <li><a href="https://linux.perlzemi.com/blog/20200203124238.html">tailコマンド - ファイルの末尾を出力</a></li>
-  <li><a href="https://linux.perlzemi.com/blog/20200113083613.html">cat - ファイルの内容を出力する</a></li>
-  <li><a href="https://linux.perlzemi.com/blog/20190401171737.html">vi - コマンドライン用のテキストエディタ</a></li>
-</ul>
+<pre>
+cd /usr/local/src
+wget https://github.com/mozilla/geckodriver/releases/download/v0.26.0/geckodriver-v0.26.0-linux64.tar.gz
+tar -xf geckodriver-v0.26.0-linux64.tar.gz
+mv geckodriver /usr/local/bin/
+</pre>
+<p>
+  GeckoDriverのバージョン確認。
+</p>
+<pre>
+geckodriver --version
+</pre>
+<p>
+  バージョンの出力結果。
+</p>
+<pre>
+geckodriver 0.26.0 (e9783a644016 2019-10-10 13:38 +0000)
+</pre>
+<p>
+  不具合がある場合は、FirefoxとGeckoDriverのバージョンをWeb上で検索して、確認してください。
+</p>
+<h3>JavaScript対応のWebスクレイピングをPerlで行うには?</h3>
+<p>
+  JavaScript対応のWebスクレイピングをPerlで行うには<a href="/blog/20210106090837.html">Firfoxのインストール</a>と<a href="https://tutorial.perlzemi.com/blog/20091116124667.html">Perlモジュール</a>の<a href="https://tutorial.perlzemi.com/blog/20210105145700.html">Selenium::Remote::Driver</a>も必要です。
+</p>
 
   </div>
   <div class="bottom">
