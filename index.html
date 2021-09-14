@@ -8,17 +8,18 @@
 <link rel="stylesheet" type="text/css" href="/css/common.css">
 
 <title>CentOS+Perl Webシステム開発環境構築入門</title>
-<meta name="description" content="CentOSサーバー構築入門では、CentOSを使って、PerlによるWebシステム開発環境を構築するための手順を紹介します。Linux仮想マシン上に、スケーラブルで、リアルタイムWeb対応のWebアプリケーションを比較的簡単に構築できることは、Perl Webシステム開発の特徴です。">
+<meta name="description" content="CentOS開発環境構築は、CentOSを使って、PerlによるWebシステム開発環境を構築するための手順を紹介します。Linux仮想マシン上に、スケーラブルで、リアルタイムWeb対応のWebアプリケーションを比較的簡単に構築できることは、Perl Webシステム開発の特徴です。">
   </head>
   <body>
     <div class="container">
       <div class="header">
-        <!-- header -->
-<h1>
-  <a href="/">CentOS開発環境構築</a>
-</h1>
-<div class="header_description">
-  <a target="_blank" rel="nofollow" href="https://www.amazon.co.jp/Perl%25E3%2583%2586%25E3%2582%25AD%25E3%2582%25B9%25E3%2583%2588%25E5%2587%25A6%25E7%2590%2586%25E3%2581%25AE%25E3%2582%25A8%25E3%2583%2583%25E3%2582%25BB%25E3%2583%25B3%25E3%2582%25B9-Perl%25E7%25B7%258F%25E5%2590%2588%25E7%25A0%2594%25E7%25A9%25B6%25E6%2589%2580-ebook/dp/B097T6CBR6/ref=tmm_kin_swatch_0?_encoding=UTF8&amp;qid=1629243986&amp;sr=8-1&_encoding=UTF8&tag=perlgenki-22&linkCode=ur2&linkId=0a19e054f7d30071a6786d3891899a28&camp=247&creative=1211">Linuxでのテキスト処理の入門書<br>試し読みができるキャンペーン実施中</a>
+        <div class="header_main">
+  <h1>
+    <a href="/"><img src="/images/logo.png">CentOS開発環境構築</a>
+  </h1>
+  <div class="header_right">
+    <a rel="nofollow" href="https://perlri.com/account/create">会員登録</a>
+  </div>
 </div>
 
       </div>
@@ -29,9 +30,9 @@
     
   </div>
   <div class="middle">
-    <h2><a href="/">CentOS+Perl Webシステム開発環境構築入門</a></h2>
+    <h2><a href="/">CentOS開発環境構築  - Perl Web開発環境構築</a></h2>
 <p>
-  <b>CentOSサーバー構築入門</b>では、CentOSを使って、PerlによるWebシステム開発環境を構築するための手順を紹介します。Linux仮想マシン上に、スケーラブルで、リアルタイムWeb対応のWebアプリケーションを比較的簡単に構築できることは、Perl Webシステム開発の特徴です。
+  <b>CentOS開発環境構築</b>は、CentOSを使って、PerlによるWebシステム開発環境を構築するための手順を紹介します。Linux仮想マシン上に、スケーラブルで、リアルタイムWeb対応のWebアプリケーションを比較的簡単に構築できることは、Perl Webシステム開発の特徴です。
 </p>
 <div style="width:calc(100% - 30px);margin:0 auto;">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4525414114581084"
@@ -51,12 +52,6 @@
 
 <p>
   CentOS上にWebサーバーを構築、PerlのWebアプリケーションを作って、Webサーバーからリバースプロキシでつなぐ設定して、外部へ公開できるところまでを解説します。
-</p>
-<p>
-  CentOSサーバー構築入門は、<a href="https://tutorial.perlzemi.com/">Perlシステム開発</a>の木本システム株式会社のITエンジニアの研修教材を公開したものです。<a href="https://web.perlzemi.com/">Webシステム開発</a>・業務システム開発の現場で実際に使われている内容が中心となっています。
-</p>
-<p>
-  このサイトの最終更新年は2020年です。研修教材は、2020年に実務で使え、長期的なトレンドに合うことを目指して、作られています。
 </p>
 <p>
   2020年7月29日現在、CentOSのバージョンは、CentOS 7で確認していますが、特別な注記がない限り、CentOS 8でも、動作すると想定しています。
@@ -98,94 +93,112 @@
   <li><a href="/blog/20200126080644.html">ApacheでIP認証とベーシック認証を組み合わせる - CentOS 7</a></li>
   <li><a href="/blog/20200116182708.html">htpasswd - Apacheベーシック認証のパスワードファイルの作成 - CentOS 7</a></li>
 </ul>
-<h3>関連講座</h3>
+<h3>Webシステム開発のための関連講座</h3>
+<p>
+  このサイトのすべての記事は以下にあります。
+</p>
 <ul>
-  <li><a href="https://linux-perl-genki.com/">Linux入門講座</a></li>
-  <li><a href="https://web-application-perl-genki.com/">Web開発講座</a></li>
-  <li><a href="https://mojolicious-tutorial.com/">Webフレームワーク Mojolicious</a></li>
-  <li><a href="https://datascience.perlzemi.com/">データ分析入門</a></li>
-  <li><a href="https://c-language-perl-genki.com/">C言語入門</a></li>
+  <li><a href="/all.html">すべての記事を見る</a></li>
+</ul>
+<p>
+  またWebシステム開発環境を作成した後に、実際にWebシステム開発ができるようになるための関連講座を用意していますので、ご活用ください。
+</p>
+<h4>Weアプリケーション開発入門</h4>
+<p>
+  Perlの基礎がわかっていて、すぐにWebアプリケーション開発を始めたいならこちら(かなり未完成)。
+</p>
+<ul>
+  <li><a href="https://websystem.perlzemi.com/">Perl Webアプリケーション開発入門</a></li>
+</ul>
+<h4>Perlプログラミング入門</h4>
+<p>
+  Perlの基礎を学んでテキスト処理やライブラリ開発を行いたいならこちら。
+</p>
+<ul>
+  <li><a href="https://perlzemi.com/">Perlゼミ - Perlプログラミング入門</a></li>
+</ul>
+<h4>Webデザイン入門</h4>
+<p>
+  HTML・CSS・JavaScriptなどWebデザインの基礎について学びたい方はこちら。
+</p>
+<ul>
+  <li><a href="https://web-html-css-perl-genki.com/">Webデザイン入門 - HTML・CSS・JavaScriptの基本</a></li>
+</ul>
+<h4>Linuxサーバー管理入門</h4>
+<p>
+  viテキストエディタや基本的なLinuxコマンド、Linuxの仕組みについて学びたい方はこちら。
+</p>
+<ul>
+  <li><a href="https://linux-perl-genki.com/">Linuxサーバー管理入門</a></li>
+</ul>
+<h4>データベース入門</h4>
+<p>
+  MariaDBデータベースの環境構築やSQLの実行について学びたい方はこちら(かなり未完成)。
+</p>
+<ul>
+  <li><a href="https://mariadb-perl-genki.com/">MariaDB入門 - データベース入門</a></li>
 </ul>
 
   </div>
   <div class="bottom">
-    <!-- bottom -->
-
-<h3>CentOS+PerlでWebシステム開発 環境構築のご紹介</h3>
-
-<div class="youtube_block">
-  <div class="youtube">
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/BV-QTIdBSVs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-  </div>
+    <div class="perlclub_register">
+  <a rel="nofollow" href="https://perlri.com/account/create">Perlクラブへの<br>無料の会員登録で<br>書籍サンプルプレゼント</a>
 </div>
-
-<div style="width:calc(100% - 30px);margin:0 auto;">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4525414114581084"
-     crossorigin="anonymous"></script>
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-format="fluid"
-     data-ad-layout-key="-gw-3+1f-3d+2z"
-     data-ad-client="ca-pub-4525414114581084"
-     data-ad-slot="6080873486"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-</div>
-
 
   </div>
 </div>
 
         </div>
         <div class="side">
-          <!-- side -->
-<div class="side_list">
+          <div class="side_list">
   <div class="side_list_title">
-    CentOS講座作成
-  </div>
-  <ul>
-    <li style="text-align:center;padding-left:0"><a rel="nofollow" href="http://www.perlri.com/"><img width="120" src="https://tutorial.perlzemi.com/images/kaeru_w_01.png"><br>ゆとりある<br>エンジニアライフを創造中<br>Perl元気塾</a></li>
-  </ul>
-</div>
-
-<div class="side_list">
-  <div class="side_list_title">
-    CentOS講座目次
-  </div>
-  <ul>
-    <li><a rel="nofollow" href="/">CentOSサーバー構築入門</a></li>
-    <li><a rel="nofollow" href="/blog/20200529085516.html">パッケージ管理</a></li>
-    <li><a rel="nofollow" href="/list.html">新着情報</a></li>
-  </ul>
-</div>
-
-<div class="side_list">
-  <div class="side_list_title">
-    プロのWeb開発者になる方法
+    Perlテキスト処理のエッセンス
   </div>
   <div class="side_list_body">
     <ul>
       <li>
-        <div style="text-align:center;margin-bottom:5px;">
-          <a rel="nofollow" href="https://perlri.com/job" target="_blank">プロのWeb開発者になるための<br>仕事の探し方・選び方</a>
+        <div class="side_list_image">
+          <a rel="nofollow" href="https://perlri.com/book/perl_text_essense"><img src="https://perlri.com/images/book/perl_text_essence/perl_text_essence.jpg"></a>
         </div>
-<!-- サイドバー -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4525414114581084"
-     crossorigin="anonymous"></script>
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-format="fluid"
-     data-ad-layout-key="-gw-3+1f-3d+2z"
-     data-ad-client="ca-pub-4525414114581084"
-     data-ad-slot="6384959968"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>        <!-- 
-        <div>
-          <img src="/images/ad/ad_image_example.png">
+        <div class="side_list_description">
+          <div >初級者向け・テキスト処理と正規表現の基本をマスター</div>
         </div>
-        -->
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="side_list">
+  <div class="side_list_title">
+    業務に役立つPerl
+  </div>
+  <div class="side_list_body">
+    <ul>
+      <li>
+        <div class="side_list_image">
+          <a  rel="nofollow" href="https://perlri.com/book/perl_gyoumu"><img src="https://perlri.com/images/book/perl_gyoumu/perl_gyoumu.jpg"></a>
+        </div>
+        <div class="side_list_description">
+          実務者向け・ログ解析など日本語を含むテキスト処理の実践!
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="side_list">
+  <div class="side_list_title">
+    Perlクラブ
+  </div>
+  <div class="side_list_body">
+    <ul>
+      <li>
+        <div class="side_list_image">
+          <a rel="nofollow" href="http://perlri.com/"><img style="width:130px" src="https://perlri.com/images/perl_club_logo.png"></a>
+        </div>
+        <div class="side_list_description">
+          仲間と出会い<br>ゆとりあるエンジニアライフを送る
+        </div>
       </li>
     </ul>
   </div>
@@ -194,20 +207,16 @@
         </div>
       </div>
       <div class="footer">
-        <div class="what_is_this_site">
-  <div class="inside">
-    現在このサイトは、ほぼ書きかけの状態です。<a rel="nofollow" href="https://linux.perlzemi.com/">Linux</a>ディストリビューションの一つであるCentOSをを使って<a rel="nofollow" href="https://tutorial.perlzemi.com/">Perl</a>のWebシステム開発環境を構築するための手順を記述しています。<br><a rel="nofollow" href="https://mojolicious.perlzemi.com/">Mojolicious</a>を使った<a rel="nofollow" href="https://websystem.perlzemi.com/">Webアプリケーション</a>を実行して、ドメイン取得を行って、Webサービスをサービスを実際に公開するまでを解説。Webシステム開発環境は、<a rel="nofollow" href="https://datascience.perlzemi.com/">データ分析</a>を行うためのデータ分析基盤、<a rel="nofollow" href="https://c.perlzemi.com/">C言語</a>の開発環境としても利用できます。
-  </div>
-</div>
-
-<div class="perlri_link">
-  <a rel="nofollow" href="http://www.perlri.com">
-    ゆとりある<br>エンジニアライフを創造中<br>Perl元気塾
+        <div class="perlri_link">
+  <a rel="nofollow" href="http://perlri.com">
+    仲間と出会い<br>ゆとりあるエンジニアライフを送る<br>Perlクラブ
   </a>
 </div>
 
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4525414114581084"
      crossorigin="anonymous"></script>
+     
+ 
       </div>
     </div>
   </body>
