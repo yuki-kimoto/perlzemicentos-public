@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- meta -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
+<link rel="icon" type="image/x-icon" href="/images/logo.png">
+<link rel="stylesheet" type="text/css" href="/css/common.css">
+
+<script type="text/javascript" src="/js/jquery-1.9.0.min.js"></script>
+<script type="text/javascript" src="/js/google-code-prettify/prettify.js"></script>
+<link  type="text/css" rel="stylesheet" href="/js/google-code-prettify/prettify.css"/>
+<script>
+  $(function(){
+    // google code prettifyの有効化
+    $("pre").addClass("prettyprint");
+    function init(event){
+      prettyPrint();
+    }
+    if(window.addEventListener)window.addEventListener("load",init,false);
+    else if(window.attachEvent)window.attachEvent("onload",init);
+    
+    $(".to-top").click(function() {
+      // ページの一番上までスクロールさせます。
+      $('body, html').animate({scrollTop: 0}, 300, 'linear');;
+    });
+  });
+</script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NREC71BDNY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-NREC71BDNY');
+</script>
+<title>CentOSのマイナーバージョンをアップデートする - CentOS 7, Cent OS 8 - CentOS+Perl Webシステム開発環境構築入門</title>
+<meta name="description" content="CentOSのマイナーバージョンをアップグレードするには「yum update」を使います。">
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <div class="header_main">
+  <h1>
+    <a href="/"><img src="/images/logo.png">CentOS開発環境構築</a>
+  </h1>
+  <div class="header_right">
+    <a rel="nofollow" href="https://perlclub.net/account/create">会員登録</a>
+  </div>
+</div>
+
+      </div>
+      <div class="main">
+        <div class="content">
+          <div class="entry">
+  <div class="top">
+    
+  </div>
+  <div class="middle">
+    <h2><a href="/blog/20200204080644.html0">CentOSのマイナーバージョンをアップデートする - CentOS 7, Cent OS 8</a></h2>
+<p>
+  CentOSのマイナーバージョンをアップグレードするには「yum update」を使います。
+</p>
+<div style="width:calc(100% - 30px);margin:10px auto;">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4525414114581084"
+       crossorigin="anonymous"></script>
+  <!-- 最初の段落下 - ディスプレイ 横長 レスポンシブ -->
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-4525414114581084"
+       data-ad-slot="2828858335"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>
+       (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+
+
+<pre>
+sudo yum update
+</pre>
+<p>
+  CentOSが、最新のマイナーバージョンに更新されます。
+</p>
+<p>
+  カーネルを含めてCentOSのすべての依存しているすべてのパッケージが最新のものになります。
+</p>
+<h3>本番環境のアップデートは開発環境で試してから</h3>
+<p>
+  本番環境のアップデートをいきなり行うと、環境が壊れて大変なことになります。
+</p>
+<p>
+  まず最初に、開発環境で、環境をアップデートして、重要なアプリケーションが動くことを確認してください。
+</p>
+<pre>
+# Apacheの再起動
+sudo systemctl reload httpd
+
+# Apacheの再起動の確認
+sudo systemctl status httpd
+
+# Mariadbの再起動
+sudo systemctl restart mariadb
+
+# Mariadbの再起動の確認
+sudo systemctl status mariadb
+
+# Postfixの再起動
+systemctl restart postfix
+
+# Postfixの確認
+systemctl status postfix
+
+# Webアプリケーションの再起動
+hypnotoad myapp.pl
+</pre>
+<p>
+  開発環境で正しく動くことを確認したら、本番環境で実行です。
+</p>
+<h3>Apacheの起動に失敗しました</h3>
+<p>
+  Apacheのバージョンがアップグレードされて、設定ファイルの互換性がない部分で、エラーが出ている可能性があります。
+</p>
+<p>
+  Apacheのステータスを確認してみましょう。
+</p>
+<pre>
+systemctl status httpd
+</pre>
+<p>
+  エラーのサンプルです。
+</p>
+<pre>
+Feb 04 08:13:28 tk2-261-xxxxx.vs.sakura.ne.jp systemd[1]: Starting The Apache HTTP Server...
+Feb 04 08:13:28 tk2-261-xxxxx.vs.sakura.ne.jp httpd[21879]: AH00526: Syntax error on line 16 of /etc/httpd/conf.d/autoindex.conf:
+Feb 04 08:13:28 tk2-261-xxxxx.vs.sakura.ne.jp httpd[21879]: Invalid command 'IndexOptions', perhaps misspelled or defined by a module not included in the server configuration
+Feb 04 08:13:28 tk2-261-xxxxx.vs.sakura.ne.jp systemd[1]: httpd.service: main process exited, code=exited, status=1/FAILURE
+Feb 04 08:13:28 tk2-261-xxxxx.vs.sakura.ne.jp kill[21881]: kill: cannot find process ""
+Feb 04 08:13:28 tk2-261-xxxxx.vs.sakura.ne.jp systemd[1]: httpd.service: control process exited, code=exited status=1
+Feb 04 08:13:28 tk2-261-xxxxx.vs.sakura.ne.jp systemd[1]: Failed to start The Apache HTTP Server.
+Feb 04 08:13:28 tk2-261-xxxxx.vs.sakura.ne.jp systemd[1]: Unit httpd.service entered failed state.
+Feb 04 08:13:28 tk2-261-xxxxx.vs.sakura.ne.jp systemd[1]: httpd.service failed.
+</pre>
+<p>
+  なんでしょうね「/etc/httpd/conf.d/autoindex.conf」って。Aapcheがバージョンアップされて、勝手に違う設定ファイルが読み込まれているのかな?
+</p>
+<p>
+  こんなエラーも。
+</p>
+<pre>
+Feb 04 08:42:55 vs01 systemd[1]: Starting The Apache HTTP Server...
+Feb 04 08:42:55 vs01 httpd[26387]: [Tue Feb 04 08:42:55.096137 2020] [so:warn] [pid 26387] AH01574: module systemd_module is already loaded, skipping
+Feb 04 08:42:55 vs01 httpd[26387]: (98)Address already in use: AH00072: make_sock: could not bind to address [::]:443
+Feb 04 08:42:55 vs01 systemd[1]: httpd.service: main process exited, code=exited, status=1/FAILURE
+Feb 04 08:42:55 vs01 kill[26388]: kill: cannot find process ""
+Feb 04 08:42:55 vs01 systemd[1]: httpd.service: control process exited, code=exited status=1
+Feb 04 08:42:55 vs01 systemd[1]: Failed to start The Apache HTTP Server.
+Feb 04 08:42:55 vs01 systemd[1]: Unit httpd.service entered failed state.
+Feb 04 08:42:55 vs01 systemd[1]: httpd.service failed.
+</pre>
+<p>
+  あれ、443ポートがすでにバインドされている??? もしや、デフォルトのssl.confが勝手に読み込まれてしまっている?
+</p>
+<p>
+  こういうことがあるので、まず最初に開発環境で試してから、本番環境もアップデートしましょう。
+</p>
+<h3>CentOSのバージョンの確認</h3>
+<p>
+  以下のコマンドで、最新版にアップデートされているか確認してみましょう。
+</p>
+<pre>
+cat /etc/redhat-release
+</pre>
+<p>
+  最新版になっていますね。
+</p>
+<pre>
+CentOS Linux release 7.7.1908 (Core)
+</pre>
+
+  </div>
+  <div class="bottom">
+    <div class="perlclub_register">
+  <a rel="nofollow" href="https://perlclub.net/account/create">Perlクラブへの<br>無料の会員登録で<br>書籍サンプルプレゼント</a>
+</div>
+
+  </div>
+</div>
+
+        </div>
+        <div class="side">
+          <div class="side_list">
+  <div class="side_list_body">
+    <ul>
+      <li>
+        <div class="side_list_image">
+          <a rel="nofollow" href="https://perlclub.net/book/perl_text_essense"><img style="width:220px;" src="https://perlclub.net/images/book/perl_text_essence/perl_text_essence.jpg"></a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="side_list">
+  <div class="side_list_body">
+    <ul>
+      <li>
+        <div class="side_list_image">
+          <a  rel="nofollow" href="https://perlclub.net/book/perl_gyoumu"><img style="width:220px;" src="https://perlclub.net/images/book/perl_gyoumu/perl_gyoumu.jpg"></a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="side_list">
+  <div class="side_list_body">
+    <ul>
+      <li>
+        <div class="side_list_image">
+          <a rel="nofollow" href="https://twitter.com/perlzemi"><img style="height:70px;margin-right:20px;" src="https://perlclub.net/images/external/twitter_icon.png"></a>
+          <a rel="nofollow" href="https://www.youtube.com/channel/UCbeAS6ZXpSKqkzb-Nykb0ZQ"><img style="height:70px;" src="https://perlclub.net/images/external/youtube_icon.png"></a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+        </div>
+      </div>
+      <div class="footer">
+        <div class="perlri_link">
+  <a rel="nofollow" href="https://perlclub.net">Perlクラブ</a>
+</div>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4525414114581084"
+     crossorigin="anonymous"></script>
+     
+      </div>
+    </div>
+  </body>
+</html>

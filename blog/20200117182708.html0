@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- meta -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
+<link rel="icon" type="image/x-icon" href="/images/logo.png">
+<link rel="stylesheet" type="text/css" href="/css/common.css">
+
+<script type="text/javascript" src="/js/jquery-1.9.0.min.js"></script>
+<script type="text/javascript" src="/js/google-code-prettify/prettify.js"></script>
+<link  type="text/css" rel="stylesheet" href="/js/google-code-prettify/prettify.css"/>
+<script>
+  $(function(){
+    // google code prettifyの有効化
+    $("pre").addClass("prettyprint");
+    function init(event){
+      prettyPrint();
+    }
+    if(window.addEventListener)window.addEventListener("load",init,false);
+    else if(window.attachEvent)window.attachEvent("onload",init);
+    
+    $(".to-top").click(function() {
+      // ページの一番上までスクロールさせます。
+      $('body, html').animate({scrollTop: 0}, 300, 'linear');;
+    });
+  });
+</script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NREC71BDNY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-NREC71BDNY');
+</script>
+<title>Let's encryptを使って、SSL証明書を取得する - CentOS 7 - CentOS+Perl Webシステム開発環境構築入門</title>
+<meta name="description" content="HTTPS対応するために、無料でSSL証明書を取得できるLet's enryptを利用するためのcertbotをインストールしましょう。">
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <div class="header_main">
+  <h1>
+    <a href="/"><img src="/images/logo.png">CentOS開発環境構築</a>
+  </h1>
+  <div class="header_right">
+    <a rel="nofollow" href="https://perlclub.net/account/create">会員登録</a>
+  </div>
+</div>
+
+      </div>
+      <div class="main">
+        <div class="content">
+          <div class="entry">
+  <div class="top">
+    
+  </div>
+  <div class="middle">
+    <h2><a href="/blog/20200117182708.html0">Let's encryptを使って、SSL証明書を取得する - CentOS 7</a></h2>
+<p>
+  HTTPS対応するために、無料でSSL証明書を取得できるLet's enryptを利用するためのcertbotをインストールしましょう。
+</p>
+<div style="width:calc(100% - 30px);margin:10px auto;">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4525414114581084"
+       crossorigin="anonymous"></script>
+  <!-- 最初の段落下 - ディスプレイ 横長 レスポンシブ -->
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-4525414114581084"
+       data-ad-slot="2828858335"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>
+       (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+
+
+<pre>
+sudo yum -y install epel-release
+sudo yum -y install certbot python-certbot-apache
+</pre>
+<h3>Let's encryptは証明書の取得にWebサーバーが必要</h3>
+<p>
+  Let's encryptは、HTTP接続できるWebサーバーにアクセスできることを確認することによって、SSL証明書を発行します。
+</p>
+<p>
+  ですので、HTTPで待ち受けるWebサーバーが必要です。
+</p>
+<p>
+  Webサーバーとして<a href="/blog/20200115175810.html">Aapcheのインストール</a>を行いましょう。
+</p>
+<p>
+  HTTPS接続のためには、mod_sslが必要ですので、<a href="/blog/20200112182708.html">mod_ssl</a>のインストールを行いましょう。
+</p>
+<p>
+  よくあるサーバーの構成として、リバースプロキシで待ち受ける場合を考えてみましょう。
+</p>
+<p>
+  「/etc/httpd/conf.d/vhost.conf」の中に以下のような設定をします。HTTPのデフォルトポート80で「www.mydomain.example」を受けて、後ろにあるアプリケーションサーバーの10000番ポートで受けます。
+</p>
+<pre>
+  &lt;VirtualHost *:80&gt;
+    ServerName www.mydomain.example
+    
+    &lt;Proxy *&gt;
+      Require all granted
+    &lt;/Proxy&gt;
+
+    ProxyRequests Off
+    ProxyPreserveHost On
+    ProxyPass / http://localhost:10000/ keepalive=On
+    ProxyPassReverse / http://localhost:10000/
+    RequestHeader set X-Forwarded-Proto "https"
+  &lt;/VirtualHost&gt;
+</pre>
+<p>
+  SSL証明書の読み込みの設定は、存在しないので、この時点では行いません。
+</p>
+<p>
+  設定後<a href="/blog/20200115175810.html">Apacheを再起動</a>して「http://www.mydomain.example」で、接続できることを確認してください。再起動の前には、<a href="/blog/20200114175810.html">Apacheの設定ファイルが正しいことをチェック</a>しておくと安心でしょう。
+</p>
+<p>
+  リバースプロキシで、Webアプリケーションに接続しているの、Mojoliciousでサーバーを起動する簡単な例です。
+</p>
+<pre>
+# myapp.pl
+use Mojolicious::Lite;
+
+app-&gt;start;
+</pre>
+<p>
+  起動
+</p>
+<pre>
+hypnotoad myapp.pl
+</pre>
+<p>
+  <a href="https://webapp.perlzemi.com/">Mojolicious</a>のhypnotoadサーバーのデフォルトのポートは10000ですが、ポート番号を指定したい場合は「hypnotoad.conf」を編集します。
+</p>
+<h3>SSL証明書を取得する</h3>
+<p>
+  certbotを使って、SSL証明書を取得しましょう。Apache用のHTTPS接続のための設定も自動で追加してくれます。
+</p>
+<pre>
+sudo certbot run --apache -d www.mydomain.example
+</pre>
+<p>
+  最初にメールアドレスを聞かれます。メールアドレスを入力して、Enter。
+</p>
+<pre>
+Saving debug log to /var/log/letsencrypt/letsencrypt.log
+Plugins selected: Authenticator apache, Installer apache
+Enter email address (used for urgent renewal and security notices) (Enter 'c' to
+cancel):
+</pre>
+<p>
+  次に同意をするか聞かれるので「A」を押してEnter。
+</p>
+<pre>
+Starting new HTTPS connection (1): acme-v02.api.letsencrypt.org
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Please read the Terms of Service at
+https://letsencrypt.org/documents/LE-SA-v1.2-November-15-2017.pdf. You must
+agree in order to register with the ACME server at
+https://acme-v02.api.letsencrypt.org/directory
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+(A)gree/(C)ancel:
+</pre>
+<p>
+  メールアドレスをElectronic Frontier Foundationと共有したいか聞かれるので「Y」か「N」を押してEnter。
+</p>
+<pre>
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Would you be willing to share your email address with the Electronic Frontier
+Foundation, a founding partner of the Let's Encrypt project and the non-profit
+organization that develops Certbot? We'd like to send you email about our work
+encrypting the web, EFF news, campaigns, and ways to support digital freedom.
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+(Y)es/(N)o:
+</pre>
+<p>
+  HTTPをHTTPSにリダイレクトするか聞かれるので、「1」のリダイレクトを選びましょう。
+</p>
+<pre>
+Please choose whether or not to redirect HTTP traffic to HTTPS, removing HTTP access.
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+1: No redirect - Make no further changes to the webserver configuration.
+2: Redirect - Make all requests redirect to secure HTTPS access. Choose this for
+new sites, or if you're confident your site works on HTTPS. You can undo this
+change by editing your web server's configuration.
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Select the appropriate number [1-2] then [enter] (press 'c' to cancel):
+</pre>
+<p>
+  最後に重要なお知らせが表示されて、終了します。
+</p>
+<pre>
+IMPORTANT NOTES:
+ - Congratulations! Your certificate and chain have been saved at:
+   /etc/letsencrypt/live/quote-app.dev-winckler-yokohama.com/fullchain.pem
+   Your key file has been saved at:
+   /etc/letsencrypt/live/quote-app.dev-winckler-yokohama.com/privkey.pem
+   Your cert will expire on 2020-04-16. To obtain a new or tweaked
+   version of this certificate in the future, simply run certbot again
+   with the "certonly" option. To non-interactively renew *all* of
+   your certificates, run "certbot renew"
+ - Your account credentials have been saved in your Certbot
+   configuration directory at /etc/letsencrypt. You should make a
+   secure backup of this folder now. This configuration directory will
+   also contain certificates and private keys obtained by Certbot so
+   making regular backups of this folder is ideal.
+ - If you like Certbot, please consider supporting our work by:
+
+   Donating to ISRG / Let's Encrypt:   https://letsencrypt.org/donate
+   Donating to EFF:                    https://eff.org/donate-le
+</pre>
+<p>
+  SSL証明書は以下のディレクトリの中に格納されます。
+</p>
+<pre>
+/etc/letsencrypt/live
+</pre>
+<p>
+  見てみると、ドメインごとのディレクトリに分かれて格納されています。
+</p>
+<pre>
+sudo ls /etc/letsencrypt/live
+</pre>
+
+  </div>
+  <div class="bottom">
+    <div class="perlclub_register">
+  <a rel="nofollow" href="https://perlclub.net/account/create">Perlクラブへの<br>無料の会員登録で<br>書籍サンプルプレゼント</a>
+</div>
+
+  </div>
+</div>
+
+        </div>
+        <div class="side">
+          <div class="side_list">
+  <div class="side_list_body">
+    <ul>
+      <li>
+        <div class="side_list_image">
+          <a rel="nofollow" href="https://perlclub.net/book/perl_text_essense"><img style="width:220px;" src="https://perlclub.net/images/book/perl_text_essence/perl_text_essence.jpg"></a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="side_list">
+  <div class="side_list_body">
+    <ul>
+      <li>
+        <div class="side_list_image">
+          <a  rel="nofollow" href="https://perlclub.net/book/perl_gyoumu"><img style="width:220px;" src="https://perlclub.net/images/book/perl_gyoumu/perl_gyoumu.jpg"></a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="side_list">
+  <div class="side_list_body">
+    <ul>
+      <li>
+        <div class="side_list_image">
+          <a rel="nofollow" href="https://twitter.com/perlzemi"><img style="height:70px;margin-right:20px;" src="https://perlclub.net/images/external/twitter_icon.png"></a>
+          <a rel="nofollow" href="https://www.youtube.com/channel/UCbeAS6ZXpSKqkzb-Nykb0ZQ"><img style="height:70px;" src="https://perlclub.net/images/external/youtube_icon.png"></a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+        </div>
+      </div>
+      <div class="footer">
+        <div class="perlri_link">
+  <a rel="nofollow" href="https://perlclub.net">Perlクラブ</a>
+</div>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4525414114581084"
+     crossorigin="anonymous"></script>
+     
+      </div>
+    </div>
+  </body>
+</html>

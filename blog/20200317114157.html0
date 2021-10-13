@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- meta -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
+<link rel="icon" type="image/x-icon" href="/images/logo.png">
+<link rel="stylesheet" type="text/css" href="/css/common.css">
+
+<script type="text/javascript" src="/js/jquery-1.9.0.min.js"></script>
+<script type="text/javascript" src="/js/google-code-prettify/prettify.js"></script>
+<link  type="text/css" rel="stylesheet" href="/js/google-code-prettify/prettify.css"/>
+<script>
+  $(function(){
+    // google code prettifyの有効化
+    $("pre").addClass("prettyprint");
+    function init(event){
+      prettyPrint();
+    }
+    if(window.addEventListener)window.addEventListener("load",init,false);
+    else if(window.attachEvent)window.attachEvent("onload",init);
+    
+    $(".to-top").click(function() {
+      // ページの一番上までスクロールさせます。
+      $('body, html').animate({scrollTop: 0}, 300, 'linear');;
+    });
+  });
+</script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NREC71BDNY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-NREC71BDNY');
+</script>
+<title>フォントファイルのディレクトリ - CentOS7, CentOS8 - CentOS+Perl Webシステム開発環境構築入門</title>
+<meta name="description" content="CentOSにおけるフォントファイルのディレクトリは、以下です。">
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <div class="header_main">
+  <h1>
+    <a href="/"><img src="/images/logo.png">CentOS開発環境構築</a>
+  </h1>
+  <div class="header_right">
+    <a rel="nofollow" href="https://perlclub.net/account/create">会員登録</a>
+  </div>
+</div>
+
+      </div>
+      <div class="main">
+        <div class="content">
+          <div class="entry">
+  <div class="top">
+    
+  </div>
+  <div class="middle">
+    <h2><a href="/blog/20200317114157.html0">フォントファイルのディレクトリ - CentOS7, CentOS8</a></h3>
+<p>
+  CentOSにおけるフォントファイルのディレクトリは、以下です。
+</p>
+<div style="width:calc(100% - 30px);margin:10px auto;">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4525414114581084"
+       crossorigin="anonymous"></script>
+  <!-- 最初の段落下 - ディスプレイ 横長 レスポンシブ -->
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-4525414114581084"
+       data-ad-slot="2828858335"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>
+       (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+
+
+<pre>
+/usr/share/fonts
+</pre>
+<p>
+  フォントを追加するときは、このディレクトリの中にフォントファイルを配置します。サブディレクトリを作成しても大丈夫です。
+</p>
+<h3>すべてのフォントを表示する</h3>
+<p>
+  findコマンドを使うと、すべてのフォントを表示することができます。
+</p>
+<pre>
+find /usr/share/fonts
+</pre>
+<h3>フォントを絞り込む</h3>
+<p>
+  grepコマンドを組み合わせると、フォントを絞り込むことができます。トゥルータイプフォントだけに絞り込んでみましょう。
+</p>
+<pre>
+find /usr/share/fonts | grep ttf
+</pre>
+<p>
+  出力結果のサンプルです。
+</p>
+<pre>
+/usr/share/fonts/japanese/TrueType/sazanami-gothic.ttf
+/usr/share/fonts/japanese/TrueType/sazanami-mincho.ttf
+/usr/share/fonts/ja/TrueType/kochi-mincho-subst.ttf
+/usr/share/fonts/ja/TrueType/kochi-gothic-subst.ttf
+/usr/share/fonts/bitstream-vera/VeraSe.ttf
+/usr/share/fonts/bitstream-vera/VeraBd.ttf
+/usr/share/fonts/bitstream-vera/Vera.ttf
+/usr/share/fonts/bitstream-vera/VeraMoBd.ttf
+/usr/share/fonts/bitstream-vera/VeraIt.ttf
+/usr/share/fonts/bitstream-vera/VeraSeBd.ttf
+/usr/share/fonts/bitstream-vera/VeraMoIt.ttf
+/usr/share/fonts/bitstream-vera/VeraMoBI.ttf
+/usr/share/fonts/bitstream-vera/VeraMono.ttf
+/usr/share/fonts/bitstream-vera/VeraBI.ttf
+</pre>
+
+  </div>
+  <div class="bottom">
+    <div class="perlclub_register">
+  <a rel="nofollow" href="https://perlclub.net/account/create">Perlクラブへの<br>無料の会員登録で<br>書籍サンプルプレゼント</a>
+</div>
+
+  </div>
+</div>
+
+        </div>
+        <div class="side">
+          <div class="side_list">
+  <div class="side_list_body">
+    <ul>
+      <li>
+        <div class="side_list_image">
+          <a rel="nofollow" href="https://perlclub.net/book/perl_text_essense"><img style="width:220px;" src="https://perlclub.net/images/book/perl_text_essence/perl_text_essence.jpg"></a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="side_list">
+  <div class="side_list_body">
+    <ul>
+      <li>
+        <div class="side_list_image">
+          <a  rel="nofollow" href="https://perlclub.net/book/perl_gyoumu"><img style="width:220px;" src="https://perlclub.net/images/book/perl_gyoumu/perl_gyoumu.jpg"></a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="side_list">
+  <div class="side_list_body">
+    <ul>
+      <li>
+        <div class="side_list_image">
+          <a rel="nofollow" href="https://twitter.com/perlzemi"><img style="height:70px;margin-right:20px;" src="https://perlclub.net/images/external/twitter_icon.png"></a>
+          <a rel="nofollow" href="https://www.youtube.com/channel/UCbeAS6ZXpSKqkzb-Nykb0ZQ"><img style="height:70px;" src="https://perlclub.net/images/external/youtube_icon.png"></a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+        </div>
+      </div>
+      <div class="footer">
+        <div class="perlri_link">
+  <a rel="nofollow" href="https://perlclub.net">Perlクラブ</a>
+</div>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4525414114581084"
+     crossorigin="anonymous"></script>
+     
+      </div>
+    </div>
+  </body>
+</html>
